@@ -24,4 +24,12 @@ class CPUTest {
         cpu.loadAndRun(listOf(0xa9, 0xc0, 0xaa, 0xe8, 0x00))
         assertThat(cpu.x).isEqualTo(0xc1)
     }
+
+    @Test
+    fun testLdaFromMemory() {
+        val cpu = CPU()
+        cpu.writeMemoryU8(0x0010, 0x55)
+        cpu.loadAndRun(listOf(0xa5, 0x10, 0x00))
+        assertThat(cpu.a).isEqualTo(0x55)
+    }
 }
